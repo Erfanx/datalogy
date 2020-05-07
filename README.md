@@ -1,2 +1,2 @@
-# datalogy
-Data analysis and processing using R
+# Datalogy
+### Towards Data Science using R programming Language
