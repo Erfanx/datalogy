@@ -13,7 +13,7 @@ above <- function(x, n){
   x[use]
 }
 
-columnmean <- function(y, removeNA = FALSE){
+columnmean <- function(y, removeNA = TRUE){
   nc <- ncol(y)
   means <- numeric(nc)
   for(i in 1:nc){
