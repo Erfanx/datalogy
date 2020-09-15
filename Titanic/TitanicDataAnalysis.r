@@ -14,3 +14,11 @@ data.combined <- rbind(train1, test.survived1)
 
 data.combined <- as.data.frame(data.combined)
 
+str(data.combined)
+
+data.combined$Survived <- as.factor(data.combined$Survived)
+data.combined$Pclass <- as.factor(data.combined$Pclass)
+
+table(data.combined$Survived)
+
+table(data.combined$Pclass)
