@@ -37,3 +37,39 @@ library(stringr)
 
 misses <- data.combined[which(str_detect(data.combined$Name, "Miss.")), ]
 misses[1:5,]
+
+mrses <- data.combined[which(str_detect(data.combined$Name, "Mrs.")), ]
+mrses[1:5,]
+
+males <- data.combined[which(train$Sex == "male"), ]
+males[1:5,]
+
+extractTitle <- function(name) {
+  name <- as.character(name)
+  
+  if (length(grep("Miss.", name)) > 0) {
+    return ("Miss.")
+  } else if (length(grep("Master.", name)) > 0) {
+    return ("Master.")
+  } else if (length(grep("Mrs.", name)) > 0) {
+    return ("Mrs.")
+  } else if (length(grep("Mr.", name)) > 0) {
+    return ("Mr.")
+  } else {
+    return ("Other")
+  }
+}
+
+titles <- NULL
+for (i in 1:nrow(data.combined)) {
+  titles <- c(titles, extractTitle(data.combined[i,"Name"]))
+}
+data.combined$title <- as.factor(titles)
+
+ggplot(data.combined[1:891,], aes(x = title, fill = Survived)) +
+  geom_bar() +
+  facet_wrap(~Pclass) + 
+  ggtitle("Pclass") +
+  xlab("Title") +
+  ylab("Total Count") +
+  labs(fill = "Survived")
