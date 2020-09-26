@@ -30,4 +30,10 @@ head(as.factor(train$Name))
 
 length(unique(as.character(data.combined$Name)))
 
-dup.names <- as.character(data.combined[which(duplicated(as.character(data.combined$Name))), "name"]) 
+dup.names <- as.character(data.combined[which(duplicated(as.character(data.combined$Name))), "Name"])
+data.combined[which(data.combined$Name %in% dup.names),]
+
+library(stringr)
+
+misses <- data.combined[which(str_detect(data.combined$Name, "Miss.")), ]
+misses[1:5,]
